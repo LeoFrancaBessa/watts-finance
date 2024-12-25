@@ -1,0 +1,36 @@
+Projeto exclusivo
+Bot assistente financeiro no WhatsApp 
+ontem às 13:17
+Descrição do Projeto:
+Quero um bot para WhatsApp que funcione como um "assistente financeiro". Deve ter funcionalidades como:
+
+Registro de gastos:
+
+O usuário pode adicionar transações por categoria (ex.: alimentação, aluguel, lazer) diretamente no WhatsApp. Mensagens predefinidas para facilitar o cadastro, como:
+"Adicione um gasto de R$ 50 em alimentação."
+
+Relatórios simples:
+
+Relatório mensal básico, com:
+• Total de gastos por categoria.
+• Gastos totais do mês.
+• Saldo restante em relação ao orçamento definido.
+
+Configuração inicial:
+
+O usuário define um orçamento mensal para acompanhar suas metas financeiras.
+
+Consulta de saldo e gastos:
+
+Resumo simples, como:
+"Você gastou R$ 1.200 até agora. Saldo restante: R$ 800."
+
+Integração com WhatsApp:
+
+Interação intuitiva via mensagens para acessar e gerenciar todas as funcionalidades.
+
+Suporte básico ao usuário:
+
+Automação de respostas para dúvidas comuns (ex.: "Como adicionar um gasto?").
+
+Além disso, quero de alguma forma implementar um plano de assinatura nesse bot, e que, se o usuário não pagar, ele não terá mais acesso.
