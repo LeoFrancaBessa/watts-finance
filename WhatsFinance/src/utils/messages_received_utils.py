@@ -1,6 +1,6 @@
 from datetime import datetime
 
-class MessagesReceived:
+class MessagesReceivedUtils:
     def __init__(self, data):
         self.data = data
 
@@ -22,8 +22,8 @@ class MessagesReceived:
     
     def get_object(self):
         return {
-            'contact' : self.get_contact_name(),
-            'number' : self.get_contact_number(),
-            'date' : self.get_message_date(),
-            'body' : self.get_message_body()
+            'contact_name' : self.get_contact_name(),
+            'contact_phone' : self.get_contact_number(),
+            'message_body' : self.get_message_body(),
+            'message_date' : self.get_message_date()
         }
