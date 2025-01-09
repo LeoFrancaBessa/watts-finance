@@ -6,7 +6,7 @@ class MessageReceived(Model):
     contact_name = fields.CharField(max_length=255)
     contact_phone = fields.CharField(max_length=255)
     message_body = fields.TextField()
-    message_date = fields.DatetimeField()
+    message_date = fields.DatetimeField(auto_now_add=True)
 
     class Meta:
         table = "message_received"
@@ -14,3 +14,17 @@ class MessageReceived(Model):
 
     def __str__(self):
         return f"MessageReceived(id={self.id}, contact_name={self.contact_name}, contact_phone={self.contact_phone}, message_body={self.message_body}, message_date={self.message_date})"
+
+
+class MessageSent(Model):
+    id = fields.IntField(pk=True)
+    contact_phone = fields.CharField(max_length=255)
+    message_body = fields.TextField()
+    message_date = fields.DatetimeField(auto_now_add=True)
+
+    class Meta:
+        table = "message_sent"
+        table_description = "Table to store messages sent to WhatsApp"
+
+    def __str__(self):
+        return f"MessageSent(id={self.id}, contact_name={self.contact_name}, contact_phone={self.contact_phone}, message_body={self.message_body}, message_date={self.message_date})"

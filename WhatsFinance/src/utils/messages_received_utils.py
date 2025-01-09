@@ -25,5 +25,4 @@ class MessagesReceivedUtils:
             'contact_name' : self.get_contact_name(),
             'contact_phone' : self.get_contact_number(),
             'message_body' : self.get_message_body(),
-            'message_date' : self.get_message_date()
         }
