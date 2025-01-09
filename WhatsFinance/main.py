@@ -2,6 +2,7 @@ from fastapi import FastAPI, Query, HTTPException, Request
 from tortoise import Tortoise
 from src.models.models import MessageReceived
 from src.utils.messages_received_utils import MessagesReceivedUtils
+from src.services.send_messages import send_message
 
 app = FastAPI()
 
@@ -42,3 +43,8 @@ async def receive_messages(request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+
+@app.post("/send-messages")
+async def send_messages(to: str):
+    r = send_message(to)
+    return {"test" : r.text}

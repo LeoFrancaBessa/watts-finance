@@ -1,8 +1,8 @@
 import requests
 
 
-async def send_message(to : str, text : str):
-    headers = {'Authorization': 'Bearer EAAV8aQXqxK0BO3Jd8b48iVK75eFYa3xU9VZAK5VypoqniVaUTCaAt6KsdMGzLuVhPZBnNOVsA5bHrokZCvaXgfavtK6ge7JAsVsORL6XOctVAouNrCFlXRMRJMDamBBVXyLXRbPoy1Ye0yeQ67Sd0h8zTsspTIcIl0PQHBLRbA7N4iJPDZChc1WO86a57hgirDZByDz0jEIfZAUvGuh3F67UTzjv4ZD',
+def send_message(to : str):
+    headers = {'Authorization': 'Bearer EAAV8aQXqxK0BO9do08vZAN4vv0VkztWV90KVKDkIzI0cI0yAb5rkJL3l0fYeaB00eoj2woSCh5DWlkbPVELLABdYtG4X5cRZBs2NiEOWc1KBVOYEX0NR2CKB68tQUiTL8FETD6kw6TgM2Tiofnn7ZBoERohiKZADAslAaGknZBa9o2l6D19YmWgjs4xm7n66ZBDZANogwYZACinfclBPOv8bm8W8S9qk',
             'Content-Type': 'application/json'}
     body = { "messaging_product": "whatsapp", 
             "to": to, 
@@ -10,5 +10,5 @@ async def send_message(to : str, text : str):
             "template": { "name": "hello_world", 
                         "language": { "code": "en_US" } } }
 
-    r = await requests.post(url='https://graph.facebook.com/v21.0/488477227690162/messages', headers=headers, json=body)
+    r = requests.post(url='https://graph.facebook.com/v21.0/488477227690162/messages', headers=headers, json=body)
     return r
