@@ -1,24 +1,23 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, Query, HTTPException, Request
 from tortoise import Tortoise
 from src.models.models import MessageReceived, MessageSent
 from src.utils.messages_received_utils import MessagesReceivedUtils
 from src.services.send_messages import send_message
 
-app = FastAPI()
-
-@app.on_event("startup")
-async def init_db():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup
     await Tortoise.init(
         db_url="sqlite://db.sqlite3",
         modules={"models": ["src.models.models"]}
     )
     await Tortoise.generate_schemas()
-
-
-@app.on_event("shutdown")
-async def close_db():
+    yield
+    # Shutdown
     await Tortoise.close_connections()
-    
+
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/receive-messages")
 async def receive_messages(
