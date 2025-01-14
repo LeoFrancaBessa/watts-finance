@@ -1,4 +1,5 @@
 from src.utils.messages_received_utils import MessagesReceivedUtils
+from src.services.openai import get_intent_message
 from src.services.send_messages import send_message
 from fastapi import Query, HTTPException, Request
 from src.models.models import MessageReceived

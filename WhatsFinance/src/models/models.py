@@ -1,6 +1,7 @@
 from tortoise import Tortoise, fields
 from tortoise.models import Model
 
+
 class MessageReceived(Model):
     id = fields.IntField(pk=True)
     contact_name = fields.CharField(max_length=255)
