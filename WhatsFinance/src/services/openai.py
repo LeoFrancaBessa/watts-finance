@@ -1,7 +1,15 @@
 from openai import OpenAI
+import json
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 
 def get_intent_message(message):
+
+    client = OpenAI(
+    api_key=os.getenv("OPENAI_API_KEY")
+    )
 
     completion = client.chat.completions.create(
     model="gpt-4o-mini",
@@ -31,6 +39,9 @@ def get_intent_message(message):
         {"role": "user", "content": "Quero ajustar meu orçamento para 4000 reais."},
         {"role": "assistant", "content": '{"intent": "Atualizar orçamento", "parameters": {"amount": 4000}}'},
 
+        {"role": "user", "content": "Meu orçamento no mes é de 2200 reais."},
+        {"role": "assistant", "content": '{"intent": "Atualizar orçamento", "parameters": {"amount": 2200}}'},
+
         {"role": "user", "content": "Pode registrar um gasto de 150 reais em educação na semana passada?"},
         {"role": "assistant", "content": '{"intent": "Registrar gasto", "parameters": {"amount": 150, "category": "educação", "date": "semana passada"}}'},
 
@@ -43,6 +54,9 @@ def get_intent_message(message):
         {"role": "user", "content": "Gastei 500 reais no cartão de crédito hoje."},
         {"role": "assistant", "content": '{"intent": "Registrar gasto", "parameters": {"amount": 500, "category": "cartão de crédito", "date": "hoje"}}'},
 
+        {"role": "user", "content": "Quero gastar 900 reais esse mês"},
+        {"role": "assistant", "content": '{"intent": "Atualizar orçamento", "parameters": {"amount": 900}}'},
+
         # Mensagem do usuário atual
         {"role": "user", "content": message},
     ]
@@ -52,4 +66,4 @@ def get_intent_message(message):
     if 'intent' not in response_message:
         return None
     else:
-        return response_message
+        return json.loads(response_message)

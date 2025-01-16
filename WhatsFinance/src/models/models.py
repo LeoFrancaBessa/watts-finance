@@ -50,11 +50,10 @@ class User(Model):
 
 class UserMonthlyBudget(Model):
     id = fields.IntField(pk=True)
-    user_id = fields.ForeignKeyField("models.User", related_name="user_monthly_budget")
+    user = fields.ForeignKeyField("models.User", related_name="user_monthly_budget")
     month = fields.IntField()
     year = fields.IntField()
     budget = fields.FloatField()
-    active = fields.BooleanField(default=True)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
 
@@ -66,29 +65,12 @@ class UserMonthlyBudget(Model):
         return f"UserMonthlyBudget(id={self.id}, user_id={self.user_id}, month={self.month}, year={self.year}, budget={self.budget}, created_at={self.created_at}, updated_at={self.updated_at})"
 
 
-class SpentType(Model):
-    id = fields.IntField(pk=True)
-    name = fields.CharField(max_length=255)
-    created_at = fields.DatetimeField(auto_now_add=True)
-    updated_at = fields.DatetimeField(auto_now=True)
-
-    class Meta:
-        table = "spent_type"
-        table_description = "Table to store spent types"
-    
-    def __str__(self):
-        return f"SpentType(id={self.id}, name={self.name}, created_at={self.created_at}, updated_at={self.updated_at})"
-
-
-
 class UserSpent(Model):
     id = fields.IntField(pk=True)
-    user_id = fields.ForeignKeyField("models.User", related_name="user_spent")
-    spent_type_id = fields.ForeignKeyField("models.SpentType", related_name="spent_type")
-    spent_date = fields.DatetimeField()
+    user = fields.ForeignKeyField("models.User", related_name="user_spent")
+    spent_date = fields.DatetimeField(null=True, blank=True, default=None)
     spent_value = fields.FloatField()
-    spent_description = fields.TextField()
-    active = fields.BooleanField(default=True)
+    spent_category = fields.CharField(max_length=255, null=True, blank=True, default=None)
     created_at = fields.DatetimeField(auto_now_add=True)
     updated_at = fields.DatetimeField(auto_now=True)
 
@@ -97,5 +79,5 @@ class UserSpent(Model):
         table_description = "Table to store user spent"
 
     def __str__(self):
-        return f"UserSpent(id={self.id}, user_id={self.user_id}, spent_type_id={self.spent_type_id}, spent_date={self.spent_date}, spent_value={self.spent_value}, spent_description={self.spent_description}, created_at={self.created_at}, updated_at={self.updated_at})"
+        return f"UserSpent(id={self.id}, user_id={self.user_id}, spent_date={self.spent_date}, spent_value={self.spent_value}, spent_description={self.spent_description}, created_at={self.created_at}, updated_at={self.updated_at})"
 

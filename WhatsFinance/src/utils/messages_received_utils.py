@@ -11,7 +11,7 @@ class MessagesReceivedUtils:
         return self.data['entry'][0]['changes'][0]['value']['contacts'][0]['profile']['name']
     
     def get_contact_number(self):
-        return self.data['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id']
+        return contact_phone_format(self.data['entry'][0]['changes'][0]['value']['contacts'][0]['wa_id'])
     
     def get_message_date(self):
         date = self.data['entry'][0]['changes'][0]['value']['messages'][0]['timestamp']
@@ -26,3 +26,7 @@ class MessagesReceivedUtils:
             'contact_phone' : self.get_contact_number(),
             'message_body' : self.get_message_body(),
         }
+
+
+def contact_phone_format(contact_phone : str):
+    return contact_phone[:4] + '9' + contact_phone[4:]
